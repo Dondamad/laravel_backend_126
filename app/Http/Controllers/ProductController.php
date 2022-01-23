@@ -58,7 +58,7 @@ class ProductController extends Controller
     public function show($id)
     {
         $result = [
-            'name' => 'store',
+            'name' => 'show',
             'payload' => Product::find($id),
         ];
         return $result;
@@ -71,11 +71,12 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, $id)
     {
+        $product = Product::find($id)->update($request->all());
         $result = [
             'name' => 'update',
-            'payload' => $request->all(),
+            'payload' => $product,
         ];
         return $result;
     }
@@ -86,8 +87,14 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy($id)
     {
-        //
+        Product::where('product_id', $id)->delete();
+
+        $result = [
+            'name' => 'destroy',
+            'payload' => 'deleted',
+        ];
+        return $result;
     }
 }

@@ -17,13 +17,24 @@ class UsersSeeder extends Seeder
     public function run()
     {
         DB::table('users')->delete();
-        $data = [[
-            'name' => 'Don',
-            'email' => '622021126@tsu.ac.th',
-            'password' => Hash::make('123456'),
-            'address' => '222 satun',
-            'created_at' => Carbon::now(),
-        ]];
+        $data = [
+            [
+                'name' => 'Don',
+                'email' => '622021126@tsu.ac.th',
+                'password' => Hash::make('123456'),
+                'role' => 1,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'name' => 'Jojo',
+                'email' => 'jojo@tsu.ac.th',
+                'password' => Hash::make('123456'),
+                'role' => 2,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+        ];
         DB::table('users')->insert($data);
     }
 }
