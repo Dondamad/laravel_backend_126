@@ -46,7 +46,7 @@ class ProductController extends Controller
             'name' => 'store',
             'payload' => $newproduct,
         ];
-        return $result;
+        return response($result, 201);
     }
 
     /**
